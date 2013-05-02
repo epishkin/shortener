@@ -6,7 +6,7 @@
 GET     /                           controllers.Application.index
 POST    /                           controllers.Application.addUrl
 GET     /:alias                     controllers.Application.redirectTo(alias)
-POST    /:alias/delete              controllers.Application.deleteUrl(alias)
+GET    /:alias/delete              controllers.Application.deleteUrl(alias)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

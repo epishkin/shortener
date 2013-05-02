@@ -1,15 +1,45 @@
-@(title: String)(content: Html)
+@(title: String, header: String)(content: Html)
 
 <!DOCTYPE html>
 
 <html>
     <head>
         <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.css")">
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
         <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
     </head>
-    <body>
-        @content
-    </body>
+
+    <div class="topbar">
+        <div class="fill">
+            <div class="container">
+                <a class="brand" href="@routes.Application.index()">URL Shortener</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="content">
+
+            <div class="page-header">
+                <h1>@header</h1>
+            </div>
+
+            <div class="row">
+                <div class="span14">
+                @content
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>
+                <a href="https://github.com/epishkin/shortener">github.com/epishkin/shortener</a>
+            </p>
+        </footer>
+
+    </div>
 </html>

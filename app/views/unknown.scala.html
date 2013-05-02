@@ -1,9 +1,11 @@
 @(message: String)
 
-@main("URL Shortener") {
+@main("URL Shortener", "This is not the page you are looking for.") {
 
     <h1>@message</h1>
 
-    <a href="/">Back to the Main screen</a>
+    <div class="actions">
+        <a href="@routes.Application.index" class="btn primary">Back to the Main screen</a>
+    </div>
     
 }

@@ -3,31 +3,35 @@
 @import helper._
 @import helper.twitterBootstrap._
 
-@main("URL Shortener") {
-
-    <h1>@links.size links(s)</h1>
+@main("URL Shortener", "%s URL(s)".format(links.size)) {
 
     <ul>
     @links.map { tuple =>
         <li>
-            <a href="@tuple._1" target="_blank">@tuple._1</a>
+            <a href="@tuple._1" target="_blank">http://localhost:9000/@tuple._1</a>
             ->
             <a href="@tuple._2" target="_blank">@tuple._2</a>
 
-            @form(routes.Application.deleteUrl(tuple._1)) {
-                <input type="submit" value="Delete">
-            }
+            <a href="@routes.Application.deleteUrl(tuple._1)" class="close">&times;</a>
         </li>
     }
     </ul>
 
-    <h2>Shorten a URL</h2>
-
     @form(routes.Application.addUrl()) {
+        <fieldset>
+            <legend>Shorten a URL</legend>
 
-        @inputText(urlForm("url"))
+            @inputText(
+                urlForm("url"),
+                '_label -> "URL",
+                '_help -> "Paste a URL here.",
+                '_error -> urlForm.globalError
+            )
+        </fieldset>
 
-        <input type="submit" value="Shorten">
+        <div class="actions">
+            <input type="submit" class="btn primary" value="Shorten">
+        </div>
     }
     
 }

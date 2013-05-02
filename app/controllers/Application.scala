@@ -11,7 +11,7 @@ import java.net.{MalformedURLException, URL}
 object Application extends Controller {
 
   val urlForm = Form(
-    "url" -> nonEmptyText.verifying("Correct URL", validateUrl(_))
+    "url" -> nonEmptyText.verifying("Must be valid a URL", validateUrl(_))
   )
   
   def index = Action {
