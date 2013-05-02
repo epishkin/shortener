@@ -1,4 +1,4 @@
-This is your new Play 2.1 application
+Play 2.1 application implementing simple URL Shortener.
 =====================================
 
 A website that functions as a URL Shortener.  A user should be able to load the index page of your site and be presented with an input field where they can enter a URL. Upon entering the URL, a "shortened" version of that url is created and shown to the user as a URL to the site you're building.  When visiting that "shortened" version of the URL, the user is redirected to the original URL.
