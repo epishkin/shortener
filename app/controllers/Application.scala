@@ -20,23 +20,26 @@ object Application extends Controller {
 
   def redirectTo(alias : String) = Action {
     UrlStorage.findUrl(alias) match {
-      case Some(url) => Redirect(url)
+      case Some(url) =>
+        Redirect(url)
       case _ =>
         Ok(views.html.unknown("Unknown URL"))
     }
   }
 
-  def registerUrl = Action {implicit request =>
+  def addUrl() = Action {implicit request =>
     urlForm.bindFromRequest.fold(
       errors => BadRequest(views.html.index(UrlStorage.urls, errors)),
       url => {
-        val shortened = UrlStorage.addUrl(url)
-        println(url + " -> " + shortened)
-
-        //Ok(views.html.index(shortened, urlForm))
+        UrlStorage.addUrl(url)
         Redirect(routes.Application.index())
       }
     )
+  }
+
+  def deleteUrl(alias: String) = Action {
+    UrlStorage.remove(alias)
+    Redirect(routes.Application.index())
   }
 
   private def validateUrl(url: String): Boolean = {

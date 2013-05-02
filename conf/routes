@@ -4,8 +4,9 @@
 
 # Home page
 GET     /                           controllers.Application.index
-POST    /                           controllers.Application.registerUrl
-GET     /:shorten                   controllers.Application.redirectTo(shorten)
+POST    /                           controllers.Application.addUrl
+GET     /:alias                     controllers.Application.redirectTo(alias)
+POST    /:alias/delete              controllers.Application.deleteUrl(alias)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

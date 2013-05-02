@@ -27,13 +27,24 @@ class UrlStorageTest extends FunSuite {
   test("find URLs in the storage") {
     val storage = new UrlStorage
 
-    val short1 = storage.addUrl("http://github.com")
-    val short2 = storage.addUrl("http://meetup.com")
+    val alias1 = storage.addUrl("http://github.com")
+    val alias2 = storage.addUrl("http://meetup.com")
 
-    storage.findUrl(short1) must be(Some("http://github.com"))
-    storage.findUrl(short2) must be(Some("http://meetup.com"))
+    storage.findUrl(alias1) must be(Some("http://github.com"))
+    storage.findUrl(alias2) must be(Some("http://meetup.com"))
 
     storage.findUrl("unknown") must be(None)
   }
 
+  test("remove a URL") {
+    val storage = new UrlStorage
+
+    val alias1 = storage.addUrl("http://github.com")
+    val alias2 = storage.addUrl("http://meetup.com")
+
+    storage.remove(alias1)
+
+    storage.findUrl(alias2) must be(Some("http://meetup.com"))
+    storage.findUrl(alias1) must be(None)
+  }
 }
