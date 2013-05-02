@@ -1,0 +1,29 @@
+@(links: Map[String, String], urlForm: Form[String])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("URL Shortener") {
+
+    <h1>@links.size links(s)</h1>
+
+    <ul>
+    @links.map { tuple =>
+        <li>
+            <a href="@tuple._1" target="_blank">@tuple._1</a>
+            ->
+            <a href="@tuple._2" target="_blank">@tuple._2</a>
+        </li>
+    }
+    </ul>
+
+    <h2>Shorten a URL</h2>
+
+    @form(routes.Application.registerUrl()) {
+
+        @inputText(urlForm("url"))
+
+        <input type="submit" value="Shorten">
+    }
+    
+}
